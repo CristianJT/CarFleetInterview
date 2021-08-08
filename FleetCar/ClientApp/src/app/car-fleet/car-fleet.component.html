@@ -1,0 +1,55 @@
+<h1 id="tableLabel">Car Fleet</h1>
+
+<p *ngIf="!cars"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="cars">
+  <thead>
+    <tr>
+      <th>CODE</th>
+      <th>MAKE</th>
+      <th>MODEL</th>
+      <th>VERSION</th>
+      <th>DESCRIPTION</th>
+      <th>YEAR</th>
+      <th>VALUE HOUR</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let car of cars" (click)="getReservations(car.id)">
+      <td>{{ car.code }}</td>
+      <td>{{ car.make }}</td>
+      <td>{{ car.model }}</td>
+      <td>{{ car.version }}</td>
+      <td>{{ car.description }}</td>
+      <td>{{ car.year }}</td>
+      <td> USD {{ car.value_hour}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="reservations">
+  <h2>Reservations</h2>
+  <div *ngIf="reservations.length == 0">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Department</label>
+      <select class="custom-select" [(ngModel)]="departmentSelected">
+        <option *ngFor="let d of departments" [value]="d.id">{{d.name}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Time (in minutes)</label>
+      <input type="number" class="form-control" placeholder="Time" [(ngModel)]="timeSelected">
+    </div>
+    <button type="button" class="btn btn-primary" (click)="addReservations()">Reserve</button>
+  </div>
+  <div *ngIf="reservations.length > 0">
+    <ul class="list-group list-group-flush" *ngFor="let r of reservations">
+      <li class="list-group-item">DEPARTMENT: {{r.department}}</li>
+      <li class="list-group-item">CAR DESCRIPTION: {{r.car_description}}</li>
+      <li class="list-group-item">RESERVATION DATE: {{ r.reservation_date | date:'dd-MM-yyyy HH:mm' }}</li>
+      <li class="list-group-item">RETURN DATE: {{ r.return_date | date:'dd-MM-yyyy HH:mm' }}</li>
+      <li class="list-group-item">VALUE: USD {{r.reservation_value}}</li>
+    </ul>
+  </div>
+</div>
+

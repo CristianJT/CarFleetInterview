@@ -1,0 +1,24 @@
+<h1 id="tableLabel">Next Returns</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<p *ngIf="!nextReturns"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="nextReturns">
+  <thead>
+    <tr>
+      <th>CAR ID</th>
+      <th>DESCRIPTION</th>
+      <th>RESERVATION DATE</th>
+      <th>RETURN DATE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let car of nextReturns">
+      <td>{{ car.car_id }}</td>
+      <td>{{ car.car_description }}</td>
+      <td>{{ car.reservation_date | date:'dd-MM-yyyy HH:mm' }}</td>
+      <td>{{ car.return_date | date:'dd-MM-yyyy HH:mm' }}</td>
+    </tr>
+  </tbody>
+</table>
