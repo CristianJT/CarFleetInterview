@@ -348,3 +348,12 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+# compiled output
+/dist
+/dist-server
+/tmp
+/out-tsc
+
+FleetCar/ClientApp/src/app/**/*.js
+FleetCar/ClientApp/src/app/**/*.js.map
